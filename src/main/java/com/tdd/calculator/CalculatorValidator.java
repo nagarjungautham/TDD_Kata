@@ -9,7 +9,7 @@ public class CalculatorValidator implements ToIntFunction<String> {
 
     @Override
     public int applyAsInt(String numbers) {
-        if(numbers.contains(",")){
+        if(numbers.length() > 1){
             String[] arr = numbers.split("[/!\"#$%&'*+,.:;=?@^_`|-~\n]");
             int[] intArray = Arrays.stream(arr).mapToInt(num -> (num.isEmpty()||parseInt(num)>1000) ? 0 : parseInt(num)).toArray();
 

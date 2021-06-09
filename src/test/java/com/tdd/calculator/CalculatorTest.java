@@ -40,6 +40,11 @@ public class CalculatorTest {
     }
 
     @Test
+    public void acceptNewLineAndColonDelimiter(){
+        assertEquals(6, calValidator.applyAsInt("1:2\n3"));
+    }
+
+    @Test
     public void acceptDifferentDelimiter(){
         assertEquals(6, calValidator.applyAsInt("//;://1.:?,2\n3.;'"));
     }
