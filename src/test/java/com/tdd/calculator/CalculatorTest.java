@@ -45,17 +45,17 @@ public class CalculatorTest {
     }
 
     @Test
+    public void ignoreNumberGreaterThan1000(){
+        assertEquals(2, calValidator.applyAsInt("\n2,1001"));
+    }
+
+    @Test
     public void shouldGiveExceptionForNegative(){
         try{
             calValidator.applyAsInt("-1,2,-3");
         }catch (RuntimeException exception){
             System.out.println("Caught exception: Negative value "+exception.getMessage()+"is not allowed");
         }
-    }
-
-    @Test
-    public void ignoreNumberGreaterThan1000(){
-        assertEquals(2, calValidator.applyAsInt("\n2,1001"));
     }
 
 }
