@@ -13,9 +13,8 @@ public class CalculatorValidator implements ToIntFunction<String> {
             return 0;
         }
         else if(numbers.contains(",")){
-            String[] arr = numbers.split(",");
-            int sum = Arrays.stream(arr).mapToInt(num -> parseInt(num)).sum();
-            return sum;
+            String[] arr = numbers.split("[/!\"#$%&'*+,.:;=?@^_`|-~\n]");
+            return Arrays.stream(arr).mapToInt(num -> num.isEmpty() ? 0 : parseInt(num)).sum();
         }
         else {
             return parseInt(numbers);

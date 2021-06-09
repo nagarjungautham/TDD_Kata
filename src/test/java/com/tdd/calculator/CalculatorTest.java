@@ -34,5 +34,14 @@ public class CalculatorTest {
         assertEquals(6, calValidator.applyAsInt("1,2,3"));
     }
 
+    @Test
+    public void acceptNewLineAndCommaDelimiter(){
+        assertEquals(6, calValidator.applyAsInt("1,2\n3"));
+    }
+
+    @Test
+    public void acceptDifferentDelimiter(){
+        assertEquals(6, calValidator.applyAsInt("//;://1.:?,2\n3.;'"));
+    }
 
 }
