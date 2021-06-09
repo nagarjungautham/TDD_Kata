@@ -14,7 +14,25 @@ public class CalculatorValidator implements ToIntFunction<String> {
         }
         else if(numbers.contains(",")){
             String[] arr = numbers.split("[/!\"#$%&'*+,.:;=?@^_`|-~\n]");
-            return Arrays.stream(arr).mapToInt(num -> num.isEmpty() ? 0 : parseInt(num)).sum();
+            StringBuilder negatives = new StringBuilder();
+            int[] intArray = Arrays.stream(arr).mapToInt(num -> (num.isEmpty()||parseInt(num)>1000) ? 0 : parseInt(num)).toArray();
+            for (int a:intArray) {
+                if(a<0){
+                    negatives.append(a).append(" ");
+                }
+            }
+            return Arrays.stream(intArray)
+                    .filter(num -> {
+                        try{
+                            if(negatives.length() > 0){
+                                throw new RuntimeException();
+                            }
+                            return true;
+                        }catch (RuntimeException exception){
+                            throw new RuntimeException(String.valueOf(negatives));
+                        }
+                    })
+                    .sum();
         }
         else {
             return parseInt(numbers);
