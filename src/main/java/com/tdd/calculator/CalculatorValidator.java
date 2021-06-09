@@ -1,16 +1,24 @@
 package com.tdd.calculator;
 
-public class CalculatorValidator {
-    public int add(String numbers) {
+import java.util.Arrays;
+import java.util.function.ToIntFunction;
+
+import static java.lang.Integer.parseInt;
+
+public class CalculatorValidator implements ToIntFunction<String> {
+
+    @Override
+    public int applyAsInt(String numbers) {
         if(numbers.isEmpty()) {
             return 0;
         }
         else if(numbers.contains(",")){
             String[] arr = numbers.split(",");
-            return Integer.parseInt(arr[0])+Integer.parseInt(arr[1]);
+            int sum = Arrays.stream(arr).mapToInt(num -> parseInt(num)).sum();
+            return sum;
         }
         else {
-            return Integer.parseInt(numbers);
+            return parseInt(numbers);
         }
     }
 }

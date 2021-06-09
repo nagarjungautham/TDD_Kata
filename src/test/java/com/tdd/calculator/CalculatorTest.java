@@ -16,17 +16,22 @@ public class CalculatorTest {
 
     @Test
     public void validateCalculatorForEmptyString(){
-        assertEquals(0, calValidator.add(""));
+        assertEquals(0, calValidator.applyAsInt(""));
     }
 
     @Test
     public void outputForStringWithOneNumber(){
-        assertEquals(1, calValidator.add("1"));
+        assertEquals(1, calValidator.applyAsInt("1"));
     }
 
     @Test
     public void sumOfTwoNumbersDelimitedByComma(){
-        assertEquals(3, calValidator.add("1,2"));
+        assertEquals(3, calValidator.applyAsInt("1,2"));
+    }
+
+    @Test
+    public void sumOfMultipleNumbersDelimitedByComma(){
+        assertEquals(6, calValidator.applyAsInt("1,2,3"));
     }
 
 
