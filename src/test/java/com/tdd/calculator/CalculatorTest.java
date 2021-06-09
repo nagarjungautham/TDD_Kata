@@ -18,4 +18,16 @@ public class CalculatorTest {
     public void validateCalculatorForEmptyString(){
         assertEquals(0, calValidator.add(""));
     }
+
+    @Test
+    public void outputForStringWithOneNumber(){
+        assertEquals(1, calValidator.add("1"));
+    }
+
+    @Test
+    public void sumOfTwoNumbersDelimitedByComma(){
+        assertEquals(3, calValidator.add("1,2"));
+    }
+
+
 }
